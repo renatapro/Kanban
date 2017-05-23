@@ -1,9 +1,9 @@
 
 function Column(id, name) {
+	var self = this;
 	this.id = id;
 	this.name = name || 'Nie podano nazwy';
 	this.element = createColumn();
-}
 
 	function createColumn() {
 		// TWORZENIE NOWYCH WĘZŁÓW
@@ -23,7 +23,7 @@ function Column(id, name) {
 			event.preventDefault();
 			$.ajax({
 				url: baseUrl + '/card',
-				method: 'POST',
+				method: 'POST', 
 				data: {
 					name: cardName,
 					bootcamp_kanban_column_id: self.id
@@ -41,7 +41,9 @@ function Column(id, name) {
 			.append(columnAddCard)
 			.append(columnCardList);
 			return column;
-		}
+		
+	}
+}
 	
 Column.prototype = {
 	createCard: function(card) {
