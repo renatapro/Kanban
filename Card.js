@@ -1,13 +1,11 @@
-
-
 function Card(id, name) {
 	var self = this;
 	this.id = id;
-	this.name = name || 'Nie podano nazwy';
+	this.name = name || 'No name given';
 	this.element = createCard();
 
 	function createCard() {
-		var card = $('<li class="card"></li>');
+		var card = $('<li class="card" id="' + self.id + '"></li>');
 		var cardDeleteBtn = $('<button class="btn-delete">x</button>');
 		var cardDescription = $('<p class="card-description"></p>');
 		
@@ -17,7 +15,7 @@ function Card(id, name) {
 		
 		card.append(cardDeleteBtn);
 		cardDescription.text(self.name);
-		card.append(cardDescription)
+		card.append(cardDescription);
 		return card;
 	}
 }
@@ -28,8 +26,8 @@ Card.prototype = {
 			url: baseUrl + '/card/' + self.id,
 			method: 'DELETE',
 			success: function(){
-				self.elemt.remove();
+				self.element.remove();
 			}
 		});
 	}
-}
+};

@@ -1,0 +1,20 @@
+{
+  "name": "zadanie",
+  "version": "1.0.0",
+  "description": "example page",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u001b[3~\u001b[3~\u001b[3~\u001b[3~none"
+  },
+  "author": "Renata Prościńska",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.0.0"
+  }
+}

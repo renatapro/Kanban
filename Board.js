@@ -1,6 +1,5 @@
-
 var board = {
-	name: 'Tablica Kanban',
+	name: 'Kanban Board',
 	createColumn: function(column) {
 		this.element.append(column.element);
 		initSortable();
@@ -10,7 +9,7 @@ var board = {
 
 $('.create-column')
 	.click(function(){
-		var columnName = prompt('Wpisz nazwę kolumny');
+		var columnName = prompt('Enter a column name');
 		$.ajax({
 			url: baseUrl + '/column',
 			method: 'POST',
@@ -25,8 +24,30 @@ $('.create-column')
 	});
 	
 function initSortable() {
-	$('.card-list').sortable({
-		connectWith: '.card-list',
-		placeholder: 'card-placeholder'
+	$('.column-card-list').sortable({
+		connectWith: '.column-card-list',
+		placeholder: 'card-placeholder',
+		stop: function( event, ui ) {
+			var card = ui.item[0];
+			var cardId = card.id;
+			var cardText = card.innerText.substring(1, card.innerText.lenght);
+			var columnId = card.offsetParent.id;
+
+			moveCard(cardId, columnId, cardText);
+		}
 	}).disableSelection();
+}
+
+function moveCard(id, columnId, cardName) {
+	$.ajax({
+		url: baseUrl + '/card/' + id,
+		method: 'PUT',
+		data: {
+		name: cardName,
+		bootcamp_kanban_column_id: columnId
+	},
+	success: function() {
+		console.log('ready');
+	}
+	});
 }
